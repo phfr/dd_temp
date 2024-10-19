@@ -44,11 +44,19 @@ DataDiVR-backend is the server-side component of the DataDiVR project, designed 
    pip install -r requirements.txt
    ```
 
-3. Run the application:
+3. Set up environment variables:
+   - Create a `.env` file in the root directory and add your configuration:
 
-   ```bash
-   python app.py
-   ```
+     ```text
+     LOG_LEVEL=DEBUG
+     ```
+
+   - Alternatively, set environment variables in your shell or use the provided run scripts.
+
+4. Run the application:
+   - debug: `LOG_LEVEL=DEBUG python app.py`
+   - less log output: `LOG_LEVEL=INFO python app.py`
+   - (same as: `python app.py`)
 
 #### Option 2: Docker
 

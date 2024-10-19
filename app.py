@@ -5,6 +5,8 @@ This module sets up the DataDiVR-Backend application, configures static file ser
 loads event handlers and route handlers, and sets up the WebSocket endpoint.
 """
 
+from dotenv import load_dotenv
+
 from server_components import (
     add_custom_static_folder,
     add_static_files,
@@ -13,6 +15,9 @@ from server_components import (
     load_event_handlers,
     load_route_handlers,
 )
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 def create_app():

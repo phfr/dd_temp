@@ -27,6 +27,9 @@ def configure_logging():
     logs_dir = "logs"
     os.makedirs(logs_dir, exist_ok=True)
 
+    # Get log level from environment variable, default to INFO if not set
+    log_level = os.getenv("LOG_LEVEL", "INFO").upper()
+
     # Create a color formatter for console output
     console_formatter = colorlog.ColoredFormatter(
         "%(log_color)s%(asctime)s - %(levelname)-8s%(reset)s %(blue)s%(message)s",
@@ -50,7 +53,7 @@ def configure_logging():
 
     # Get the root logger
     logger = colorlog.getLogger()
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(log_level)
 
     # Create a stream handler for console output and set the formatter
     console_handler = colorlog.StreamHandler()
