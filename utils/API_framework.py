@@ -6,6 +6,7 @@ to switch between different web frameworks. It currently wraps FastAPI component
 """
 
 from fastapi import APIRouter
+from fastapi import BackgroundTasks as FastAPIBackgroundTasks
 from fastapi import HTTPException as FastAPIHTTPException
 from fastapi import Query as FastAPIQuery
 from fastapi import Request as FastAPIRequest
@@ -24,16 +25,10 @@ class Route(APIRouter):
     pass
 
 
-# Alias FastAPI's Query to our framework's Query
 Query = FastAPIQuery
-
-# Alias FastAPI's HTTPException to our framework's HTTPException
 HTTPException = FastAPIHTTPException
-
-# Alias FastAPI's HTMLResponse to our framework's HTMLResponse
 HTMLResponse = FastAPIHTMLResponse
-
-# Alias FastAPI's Request to our framework's Request
+BackgroundTasks = FastAPIBackgroundTasks
 Request = FastAPIRequest
 
 
