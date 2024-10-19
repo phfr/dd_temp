@@ -107,7 +107,7 @@ async def test_load_route_handlers(app):
         transport=ASGITransport(app=app), base_url="http://testserver"
     ) as client:
         response = await client.get("/")
-    assert response.status_code == 404
+    assert response.status_code == 200
 
 
 @pytest.mark.asyncio

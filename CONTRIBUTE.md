@@ -4,7 +4,6 @@
 ## Table of Contents
 
 - [Development Setup](#development-setup)
-- [Running Tests](#running-tests)
 - [Code Structure](#code-structure)
 - [Submitting Changes](#submitting-changes)
 - [Using Commitizen for Commits](#using-commitizen-for-commits)

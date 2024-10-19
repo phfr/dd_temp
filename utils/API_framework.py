@@ -8,6 +8,7 @@ to switch between different web frameworks. It currently wraps FastAPI component
 from fastapi import APIRouter
 from fastapi import HTTPException as FastAPIHTTPException
 from fastapi import Query as FastAPIQuery
+from fastapi.responses import HTMLResponse as FastAPIHTMLResponse
 
 
 class Route(APIRouter):
@@ -26,3 +27,6 @@ Query = FastAPIQuery
 
 # Alias FastAPI's HTTPException to our framework's HTTPException
 HTTPException = FastAPIHTTPException
+
+# Alias FastAPI's HTMLResponse to our framework's HTMLResponse
+HTMLResponse = FastAPIHTMLResponse
