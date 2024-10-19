@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataDiVR Backend</title>
+    <title>{% block title %}DataDiVR Backend{% endblock %}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,12 +35,9 @@
             text-decoration: underline;
         }
     </style>
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to DataDiVR Backend</h1>
-        <p>To test the WebRTC client, please visit:</p>
-        <p><a href="/static/client.html">/static/client.html</a></p>
-    </div>
+    {% block content %}{% endblock %}
 </body>
 </html>
