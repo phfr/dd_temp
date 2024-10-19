@@ -1,4 +1,9 @@
-"""Exampple module that only contains a sum API endpoint."""
+"""
+Sum API endpoint module for the DataDiVR-Backend.
+
+This module defines a REST API endpoint that calculates the sum of a list of numbers
+provided in the URL path.
+"""
 
 from fastapi import Response
 
@@ -15,12 +20,10 @@ async def calculate_sum(numbers: str, response: Response):
 
     Args:
         numbers (str): A string of numbers separated by '/' in the URL path.
+        response (Response): FastAPI response object for setting status codes.
 
     Returns:
-        dict: A dictionary containing the sum of the input numbers.
-
-    Raises:
-        HTTPException: If an error occurs during the calculation.
+        dict: A dictionary containing the sum of the input numbers or an error message.
     """
     logger.debug("Received request to sum numbers: %s", numbers)
 
@@ -30,7 +33,6 @@ async def calculate_sum(numbers: str, response: Response):
         return {"detail": "No numbers provided"}
 
     try:
-        # Split the string into a list and convert each item to float
         number_list = [float(num) for num in numbers.split("/") if num]
         if not number_list:
             logger.error("No valid numbers found in input")

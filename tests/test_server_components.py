@@ -1,3 +1,11 @@
+"""
+Integration tests for server components of the DataDiVR-Backend.
+
+This module contains pytest fixtures and test cases to verify the functionality
+of various server components, including static file serving, event handlers,
+route handlers, and WebSocket endpoints.
+"""
+
 import os
 import uuid
 from unittest.mock import AsyncMock
@@ -19,15 +27,31 @@ from utils.websocket import ws_manager
 
 @pytest.fixture
 def app():
+    """
+    Fixture to create a FastAPI app instance for testing.
+
+    Returns:
+        FastAPI: A new instance of the FastAPI application.
+    """
     return create_fastapi_app()
 
 
 def test_create_fastapi_app(app):
+    """
+    Test the creation of the FastAPI app.
+
+    Verifies that the create_fastapi_app function returns a valid FastAPI instance.
+    """
     assert app is not None
 
 
 @pytest.mark.asyncio
 async def test_add_static_files(app):
+    """
+    Test the addition of static files to the FastAPI app.
+
+    Verifies that static files are correctly served after being added to the app.
+    """
     # Use the existing static directory
     static_dir = os.path.join(os.path.dirname(__file__), "..", "static")
     os.makedirs(static_dir, exist_ok=True)
@@ -60,6 +84,11 @@ async def test_add_static_files(app):
 
 
 def test_load_event_handlers():
+    """
+    Test the loading of event handlers.
+
+    Verifies that event handlers are correctly loaded and registered.
+    """
     load_event_handlers()
     assert "welcome" in ws_manager.handlers
     assert "hello" in ws_manager.handlers
@@ -68,6 +97,11 @@ def test_load_event_handlers():
 
 @pytest.mark.asyncio
 async def test_load_route_handlers(app):
+    """
+    Test the loading of route handlers.
+
+    Verifies that route handlers are correctly loaded and registered with the app.
+    """
     load_route_handlers(app)
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://testserver"
