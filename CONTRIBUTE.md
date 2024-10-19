@@ -1,6 +1,5 @@
 # Contributing to DataDiVR-backend
 
-
 ## Table of Contents
 
 - [Development Setup](#development-setup)
