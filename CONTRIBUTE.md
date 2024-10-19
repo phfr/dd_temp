@@ -159,6 +159,8 @@ While you can use the normal `git commit` (or whatever UI) command if you're fam
 
 ## Code Style, Linting, and VSCode Setup
 
+This project follows the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) for code style and docstrings. Please refer to this guide when writing code and documentation for the project.
+
 This project uses several tools for code formatting and linting:
 
 1. **Black**: For code formatting

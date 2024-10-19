@@ -1,4 +1,9 @@
-"""Spin up websocket, api, and static file server."""
+"""
+Main application module for the DataDiVR-Backend WebSocket server.
+
+This module sets up the DataDiVR-Backend application, configures static file serving,
+loads event handlers and route handlers, and sets up the WebSocket endpoint.
+"""
 
 from server_components import (
     add_custom_static_folder,
@@ -11,8 +16,15 @@ from server_components import (
 
 
 def create_app():
-    """choose what components we want to run and do so."""
+    """
+    Create and configure the DataDiVR-Backend application.
 
+    This function sets up the DataDiVR-Backend app, adds static file serving,
+    loads event handlers and route handlers, and sets up the WebSocket endpoint.
+
+    Returns:
+        FastAPI: The configured DataDiVR-Backend application.
+    """
     app = create_fastapi_app()
 
     add_static_files(app)  # serve files in static
