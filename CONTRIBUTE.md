@@ -1,4 +1,4 @@
-# Contributing to TODO: name
+# Contributing to DataDiVR-backend
 
 
 ## Table of Contents
@@ -43,11 +43,13 @@
    pip install -r requirements-dev.txt
    ```
 
+   This will install all the necessary dependencies for development, including testing and linting tools.
+
 4. Pre-commit Hooks
 
-   This project uses [pre-commit](https://pre-commit.com/) to run tests and enforce commit message formatting with [commitizen](https://commitizen-tools.github.io/commitizen/) before commits. To set up the hooks:
+   This project uses [pre-commit](https://pre-commit.com/) to run tests, linting, and formatting checks before commits. The configuration for pre-commit is in the `.pre-commit-config.yaml` file. To set up the hooks:
 
-   #### Setup forOSX/Linux
+   #### Setup for OSX/Linux
 
    ```bash
    bash setup_hooks.sh
@@ -56,52 +58,79 @@
    #### Setup for Windows
 
    ```powershell
-   setup_hooks.bat
+   .\setup_hooks.bat
    ```
 
-## Running Tests
+## Development Tools
 
-To run the test suite:
+This project uses several development tools to ensure code quality and consistency:
 
-```bash
-pytest
-```
+1. **pytest**: For running the test suite.
+2. **black**: For code formatting.
+3. **flake8**: For linting.
+4. **isort**: For sorting imports.
+5. **pre-commit**: For running checks before commits.
+6. **commitizen**: For standardizing commit messages.
+
+These tools and their versions are specified in the `requirements-dev.txt` file. The pre-commit hooks are configured in the `.pre-commit-config.yaml` file to run automatically before each commit.
 
 ## Code Structure
 
 The project is structured as follows:
 
 1. **Main Application**
-   - `app.py`: The main entry point of the application.
+   - `app.py`: The main entry point of the DataDiVR-backend application.
 
 2. **Server Components**
-   - `server_components.py`: Contains functions for creating and configuring the FastAPI app.
+   - `server_components.py`: Contains functions for creating and configuring the DataDiVR-backend, including static file serving, event handlers, route handlers, and WebSocket endpoints.
 
 3. **WebSocket Management**
-   - `utils/websocket_manager.py`: Manages WebSocket connections, events, and client information.
+   - `utils/websocket/`: Directory containing WebSocket-related modules:
+     - `__init__.py`: Initializes and exports the WebSocketManager instance.
+     - `websocket_manager.py`: Integrates various components for managing WebSocket connections, events, and client information.
+     - `client_manager.py`: Manages client connections and information.
+     - `event_handler.py`: Handles WebSocket events and their execution.
+     - `event_decorator.py`: Provides a decorator for registering event handlers.
+     - `broadcaster.py`: Handles broadcasting messages to clients.
 
 4. **Event Handlers**
-   - `handlers/`: Directory containing individual event handler modules.
+   - `handlers/`: Directory containing individual event handler modules (e.g., welcome, hello, ping, long_task).
 
 5. **API Routes**
-   - `routes/`: Directory containing API route definitions.
+   - `routes/`: Directory containing API route definitions (e.g., sum).
 
 6. **Utility Modules**
-   - `utils/API_framework.py`: Abstracts web framework specifics.
-   - `utils/custom_logging.py`: Configures logging for the application.
+   - `utils/`: Directory containing utility modules:
+     - `API_framework.py`: Abstracts web framework specifics.
+     - `custom_logging.py`: Configures logging for the application.
+     - `names.py`: Manages unique name generation for clients.
 
 7. **Static Files**
-   - `static/`: Directory for static files, including `client.html`.
+   - `static/`: Directory for static files, including `client.html` for WebSocket testing.
 
 8. **Tests**
-   - `tests/`: Directory containing test files.
+   - `tests/`: Directory containing test files for various components.
 
-9. **Docker Configuration**
-   - `Dockerfile`: Defines the Docker image for the application.
+9. **Configuration Files**
+   - `.pre-commit-config.yaml`: Configuration for pre-commit hooks.
+   - `pyproject.toml`: Configuration for tools like Commitizen.
+   - `pytest.ini`: Configuration for pytest.
+   - `.vscode/`: Directory containing VSCode-specific settings and extension recommendations.
 
-10. **Dependencies**
+10. **Docker Configuration**
+    - `Dockerfile`: Defines the Docker image for the application.
+
+11. **Dependencies**
     - `requirements.txt`: Lists the Python package dependencies for the main application.
     - `requirements-dev.txt`: Lists additional dependencies for development and testing.
+
+12. **Documentation**
+    - `README.md`: Provides an overview of the project and setup instructions.
+    - `CONTRIBUTE.md`: Guidelines for contributing to the project.
+
+13. **Setup Scripts**
+    - `setup_hooks.sh`: Bash script for setting up pre-commit hooks on Unix-like systems.
+    - `setup_hooks.bat`: Batch script for setting up pre-commit hooks on Windows.
 
 ## Submitting Changes
 
