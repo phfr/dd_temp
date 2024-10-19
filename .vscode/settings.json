@@ -1,0 +1,46 @@
+{
+    // General settings
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+
+    // Python settings
+    "editor.formatOnSave": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "never"
+        },
+    },
+    "black-formatter.args": [],
+
+    // Flake8 (using the new extension)
+    "flake8.args": [
+        "--max-line-length=120"
+    ],
+
+    // MyPy (using the new extension)
+    "mypy-type-checker.args": [
+        "--ignore-missing-imports",
+        "--follow-imports=silent",
+        "--show-column-numbers",
+        "--strict"
+    ],
+
+    // Pytest
+    "python.testing.pytestEnabled": true,
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+
+    // YAML
+    "yaml.validate": true,
+
+    // File watcher to run pytest on save
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.py$",
+                "cmd": "pytest"
+            }
+        ]
+    }
+}
