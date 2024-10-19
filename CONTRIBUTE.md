@@ -1,6 +1,14 @@
-# Contributing to Project Name
+# Contributing to TODO: name
 
-Thank you for your interest in contributing to our project! This document provides guidelines and information for contributors.
+
+## Table of Contents
+
+- [Development Setup](#development-setup)
+- [Running Tests](#running-tests)
+- [Code Structure](#code-structure)
+- [Submitting Changes](#submitting-changes)
+- [Using Commitizen for Commits](#using-commitizen-for-commits)
+- [Code Style, Linting, and VSCode Setup](#code-style-linting-and-vscode-setup)
 
 ## Development Setup
 
@@ -8,48 +16,54 @@ Thank you for your interest in contributing to our project! This document provid
 
    TODO: Add correct link to repo
 
-   ```
+   ```bash
    git clone https://github.com/username/project-name.git
    cd project-name
    ```
 
 2. Create and activate a virtual environment:
 
-   ### OSX/Linux:
+   ### OSX/Linux
+
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    ```
 
-   ### Windows:
+   ### Windows
+
    ```powershell
    python -m venv venv
    .\venv\Scripts\Activate.ps1
    ```
 
-3. Install development dependencies:
-   ```
+3. Install development dependencies
+
+   ```bash
    pip install -r requirements-dev.txt
    ```
 
-## Pre-commit Hooks
+4. Pre-commit Hooks
 
-This project uses [pre-commit](https://pre-commit.com/) to run tests and enforce commit message formatting with [commitizen](https://commitizen-tools.github.io/commitizen/) before commits. To set up the hooks:
+   This project uses [pre-commit](https://pre-commit.com/) to run tests and enforce commit message formatting with [commitizen](https://commitizen-tools.github.io/commitizen/) before commits. To set up the hooks:
 
-### OSX/Linux:
-```bash
-bash setup_hooks.sh
-```
+   #### Setup forOSX/Linux
 
-### Windows:
-```bash
-setup_hooks.bat
-```
+   ```bash
+   bash setup_hooks.sh
+   ```
+
+   #### Setup for Windows
+
+   ```powershell
+   setup_hooks.bat
+   ```
 
 ## Running Tests
 
 To run the test suite:
-```
+
+```bash
 pytest
 ```
 
@@ -99,15 +113,19 @@ The project is structured as follows:
 
 ### Using Commitizen for Commits
 
-This project enforces standardized commit messages using Commitizen. While you can use the normal `git commit` command if you're familiar with the required format, we recommend using the interactive Commitizen command, especially if you're unsure about the formatting. Here's how to create a commit:
+This project enforces standardized commit messages using [Commitizen](https://commitizen-tools.github.io/commitizen/). Standardized commit messages help with generating changelogs and understanding the project history. You can learn more about the benefits of standardized commit messages in this [article about conventional commits](https://www.conventionalcommits.org/).
 
-1. Stage your changes:
-   ```
+While you can use the normal `git commit` (or whatever UI) command if you're familiar with the required format, we recommend using the interactive Commitizen command, especially if you're unsure about the formatting. Here's how to create a commit:
+
+1. Stage your changes
+
+   ```bash
    git add .
    ```
 
-2. To use the interactive Commitizen command (recommended for those unfamiliar with the format):
-   ```
+2. To use the interactive Commitizen command (recommended for those unfamiliar with the format)
+
+   ```bash
    cz commit
    ```
 
@@ -119,30 +137,25 @@ This project enforces standardized commit messages using Commitizen. While you c
    - Breaking changes (if any)
    - Issues closed (if any)
 
-3. If you're familiar with the Commitizen format, you can use the standard git commit command:
-   ```
+3. If you're familiar with the Commitizen format, you can use the standard git commit command
+
+   ```bash
    git commit -m "type(scope): short description"
    ```
 
    Make sure your commit message follows the Commitizen format to pass the pre-commit hooks.
 
-Example of a commit message created with Commitizen:
+   Example of a commit message created with Commitizen:
 
-```
-feat(auth): add user authentication system
+   ```text
+   feat(auth): add user authentication system
 
-- Implement JWT token-based authentication
-- Add login and logout endpoints
-- Create user model and database migrations
+   - Implement JWT token-based authentication
+   - Add login and logout endpoints
+   - Create user model and database migrations
 
-BREAKING CHANGE: API now requires authentication for most endpoints
-```
-
-Using Commitizen ensures that all commit messages follow a consistent format, which helps with generating changelogs and understanding the project history. If you're ever unsure about the correct format, use the `cz commit` command for guidance.
-
-## Questions?
-
-If you have any questions or need further clarification, please open an issue or contact the maintainers.
+   BREAKING CHANGE: API now requires authentication for most endpoints
+   ```
 
 ## Code Style, Linting, and VSCode Setup
 
@@ -163,7 +176,8 @@ To set up your VSCode environment:
 
 3. Install the pre-commit hooks as described in the "Pre-commit Hooks" section above.
 
-With these settings and extensions, VSCode will:
+With these settings and extensions, VSCode will
+
 - Automatically format your code using Black and sort imports with isort on save
 - Show Flake8 linting errors as you type
 - Run pytest when you save Python files
