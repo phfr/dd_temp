@@ -19,14 +19,6 @@
         "--max-line-length=120"
     ],
 
-    // MyPy (using the new extension)
-    "mypy-type-checker.args": [
-        "--ignore-missing-imports",
-        "--follow-imports=silent",
-        "--show-column-numbers",
-        "--strict"
-    ],
-
     // Pytest
     "python.testing.pytestEnabled": true,
     "python.testing.autoTestDiscoverOnSaveEnabled": true,

@@ -99,25 +99,32 @@ The project is structured as follows:
 
 ### Using Commitizen for Commits
 
-This project uses Commitizen to standardize commit messages. To create a commit:
+This project enforces standardized commit messages using Commitizen. While you can use the normal `git commit` command if you're familiar with the required format, we recommend using the interactive Commitizen command, especially if you're unsure about the formatting. Here's how to create a commit:
 
 1. Stage your changes:
    ```
    git add .
    ```
 
-2. Instead of using `git commit`, use:
+2. To use the interactive Commitizen command (recommended for those unfamiliar with the format):
    ```
    cz commit
    ```
 
-3. Follow the prompts to create a standardized commit message. This will typically include:
+   Follow the prompts to create a standardized commit message. This will typically include:
    - Type of change (feat, fix, docs, style, refactor, test, chore)
    - Scope of the change (optional)
    - Short description
    - Longer description (optional)
    - Breaking changes (if any)
    - Issues closed (if any)
+
+3. If you're familiar with the Commitizen format, you can use the standard git commit command:
+   ```
+   git commit -m "type(scope): short description"
+   ```
+
+   Make sure your commit message follows the Commitizen format to pass the pre-commit hooks.
 
 Example of a commit message created with Commitizen:
 
@@ -131,8 +138,35 @@ feat(auth): add user authentication system
 BREAKING CHANGE: API now requires authentication for most endpoints
 ```
 
-Using Commitizen ensures that all commit messages follow a consistent format, which helps with generating changelogs and understanding the project history.
+Using Commitizen ensures that all commit messages follow a consistent format, which helps with generating changelogs and understanding the project history. If you're ever unsure about the correct format, use the `cz commit` command for guidance.
 
 ## Questions?
 
 If you have any questions or need further clarification, please open an issue or contact the maintainers.
+
+## Code Style, Linting, and VSCode Setup
+
+This project uses several tools for code formatting and linting:
+
+1. **Black**: For code formatting
+2. **Flake8**: For linting
+3. **isort**: For import sorting
+4. **Pre-commit**: To run checks before commits
+
+To set up your VSCode environment:
+
+1. Install the recommended VSCode extensions:
+   VSCode will automatically suggest installing the recommended extensions when you open the project.
+
+2. VSCode Settings:
+   The project includes a `.vscode/settings.json` file with pre-configured settings for formatting, linting, and testing.
+
+3. Install the pre-commit hooks as described in the "Pre-commit Hooks" section above.
+
+With these settings and extensions, VSCode will:
+- Automatically format your code using Black and sort imports with isort on save
+- Show Flake8 linting errors as you type
+- Run pytest when you save Python files
+- Provide YAML validation
+
+The pre-commit hooks will ensure that all code passes these checks before being committed.
