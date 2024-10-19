@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from websockets.exceptions import ConnectionClosedOK
 
 from utils.custom_logging import logger
-from utils.websocket_manager import ws_manager
+from utils.websocket import ws_manager
 
 
 def create_fastapi_app():

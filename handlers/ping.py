@@ -1,6 +1,6 @@
 """Handles ping events for the websocket connection."""
 
-from utils.websocket_manager import ws_manager
+from utils.websocket import ws_manager
 
 
 @ws_manager.event("ping")

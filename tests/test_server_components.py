@@ -14,7 +14,7 @@ from server_components import (
     load_route_handlers,
     websocket_endpoint,
 )
-from utils.websocket_manager import ws_manager
+from utils.websocket import ws_manager
 
 
 @pytest.fixture
@@ -87,5 +87,4 @@ async def test_websocket_endpoint():
     await websocket_endpoint(mock_websocket)
 
     mock_websocket.accept.assert_called_once()
-    # You might need to adjust this assertion based on your actual implementation
-    assert len(ws_manager.connected_clients) == 0
+    assert len(ws_manager.client_manager.connected_clients) == 0

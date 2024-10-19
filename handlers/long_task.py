@@ -2,7 +2,7 @@
 
 import asyncio
 
-from utils.websocket_manager import ws_manager
+from utils.websocket import ws_manager
 
 
 @ws_manager.event("long_task")

@@ -3,37 +3,34 @@ from unittest.mock import AsyncMock, Mock
 import pytest
 from fastapi import WebSocket
 
-from utils.websocket_manager import WebSocketManager
-
-
-@pytest.fixture
-def ws_manager():
-    return WebSocketManager()
+from utils.websocket import ws_manager
 
 
 @pytest.fixture
 def mock_websocket():
     mock_websocket = Mock(spec=WebSocket)
-    # Mock the required async methods for WebSocket
     mock_websocket.scope = {}
     mock_websocket.receive = AsyncMock()
     mock_websocket.send = AsyncMock()
     return mock_websocket
 
 
-def test_add_client(ws_manager, mock_websocket):
+def test_add_client(mock_websocket):
     client_id = ws_manager.add_client(mock_websocket)
-    assert client_id in ws_manager.connected_clients
-    assert ws_manager.connected_clients[client_id].websocket == mock_websocket
+    assert client_id in ws_manager.client_manager.connected_clients
+    assert (
+        ws_manager.client_manager.connected_clients[client_id].websocket
+        == mock_websocket
+    )
 
 
-def test_remove_client(ws_manager, mock_websocket):
+def test_remove_client(mock_websocket):
     client_id = ws_manager.add_client(mock_websocket)
     ws_manager.remove_client(client_id)
-    assert client_id not in ws_manager.connected_clients
+    assert client_id not in ws_manager.client_manager.connected_clients
 
 
-def test_get_client_info(ws_manager, mock_websocket):
+def test_get_client_info(mock_websocket):
     client_id = ws_manager.add_client(mock_websocket)
     client_info = ws_manager.get_client_info(mock_websocket)
     assert client_info["client_id"] == client_id
@@ -41,7 +38,7 @@ def test_get_client_info(ws_manager, mock_websocket):
 
 
 @pytest.mark.asyncio
-async def test_event_decorator(ws_manager, mock_websocket):
+async def test_event_decorator(mock_websocket):
     @ws_manager.event("test_event")
     async def test_handler(data, websocket, client_info):
         return data["message"]
@@ -53,7 +50,7 @@ async def test_event_decorator(ws_manager, mock_websocket):
 
 
 @pytest.mark.asyncio
-async def test_handle_event(ws_manager, mock_websocket, mocker):
+async def test_handle_event(mock_websocket, mocker):
     @ws_manager.event("test_event")
     async def test_handler(data, websocket, client_info):
         await websocket.send_json({"message": data["message"]})
@@ -67,7 +64,7 @@ async def test_handle_event(ws_manager, mock_websocket, mocker):
 
 
 @pytest.mark.asyncio
-async def test_broadcast(ws_manager, mock_websocket, mocker):
+async def test_broadcast(mock_websocket, mocker):
     mock_send = mocker.patch.object(mock_websocket, "send_json", new_callable=AsyncMock)
 
     ws_manager.add_client(mock_websocket)
