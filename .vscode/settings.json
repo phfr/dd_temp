@@ -9,7 +9,7 @@
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
-            "source.organizeImports": "never"
+            "source.organizeImports": "true"
         },
     },
     "black-formatter.args": [],
@@ -34,5 +34,8 @@
                 "cmd": "pytest"
             }
         ]
-    }
+    },
+
+    // isort settings
+    "isort.args": ["--profile", "black"],
 }
