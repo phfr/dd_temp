@@ -23,6 +23,7 @@ wheels/
 # Virtual Environment
 venv/
 ENV/
+.envrc
 
 # IDEs and Editors
 #.vscode/
