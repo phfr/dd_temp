@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.0 (2024-10-21)
+
+### Feat
+
+- support for loglevel setting via .env file or env var
+
+### Fix
+
+- typo fix
+
 ## 0.1.1 (2024-10-19)
 
 ### Fix
