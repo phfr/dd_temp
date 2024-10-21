@@ -24,7 +24,7 @@ async def handle_welcome(client_info, websocket):
     client_id = client_info["client_id"]
     client_name = client_info["first_name"]
 
-    welcome_message = f"habedere! we will call you {client_name}! ({client_id})"
+    welcome_message = f"habedere! yo! we will call you {client_name}! ({client_id})"
 
     await websocket.send_json(
         {

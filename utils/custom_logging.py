@@ -28,7 +28,7 @@ def configure_logging():
     os.makedirs(logs_dir, exist_ok=True)
 
     # Get log level from environment variable, default to INFO if not set
-    log_level = os.getenv("LOG_LEVEL", "INFO").upper()
+    log_level = os.getenv("LOG_LEVEL", "DEBUG").upper()
 
     # Create a color formatter for console output
     console_formatter = colorlog.ColoredFormatter(

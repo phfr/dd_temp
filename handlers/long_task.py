@@ -8,19 +8,26 @@ how to handle asynchronous long-running tasks and broadcast results using backgr
 import asyncio
 
 from utils.API_framework import BackgroundTasks
+from utils.custom_logging import logger
 from utils.websocket import ws_manager
 
 
 @ws_manager.event("long_task")
-async def handle_long_task(background_tasks: BackgroundTasks):
+async def handle_long_task():
     """
     Handle a long-running task using background tasks and broadcast the result.
 
     This function initiates a long-running task as a background task,
     allowing the WebSocket connection to remain responsive.
     """
+    logger.debug("starting long task")
+    # Create a new BackgroundTasks instance and add the task
+    background_tasks = BackgroundTasks()
     background_tasks.add_task(run_long_task)
-    return {"message": "Long task initiated"}
+
+    await background_tasks()
+
+    logger.debug("long task initiated")
 
 
 async def run_long_task():
